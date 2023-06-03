@@ -28,6 +28,16 @@ namespace WebApp.Controllers
             return View(model);
         }
 
+        public ActionResult List()
+        {
+            var partecipants = _repo.GetParticipants();
+            var model = new PartecipantListViewModel()
+            {
+                Partecipant = partecipants.ToList()
+            };
+            return View(model);
+        }
+
         // GET: PartecipantsController/Details/5
         public ActionResult Details(int id)
         {

@@ -58,8 +58,18 @@ namespace WebApp.Service
             using (var context = new MvcContext())
             {
                 var result = context.Partecipants.Add(entry);
+                context.SaveChanges();
             }
         }
 
+        public List<Partecipant> GetParticipants()
+        {
+            using (var context = new MvcContext())
+            {
+                var list = context.Partecipants
+                    .ToList();
+                return list;
+            }
+        }
     }
 }

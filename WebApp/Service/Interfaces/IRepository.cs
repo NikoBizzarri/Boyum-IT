@@ -9,6 +9,7 @@ namespace WebApp.Service.Interfaces
     public interface IRepository
     {
         List<Event> GetEvents();
+        List<Partecipant> GetParticipants();
         void AddPartecipant(Partecipant entry);
 
     }

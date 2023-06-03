@@ -24,4 +24,9 @@ namespace WebApp.Models
         public IList<Event> Events { get; set; }
     }
 
+    public class PartecipantListViewModel
+    {
+        public IList<Partecipant> Partecipant { get; set; }
+    }
+
 }
