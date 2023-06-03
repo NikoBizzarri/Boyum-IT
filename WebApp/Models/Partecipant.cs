@@ -13,11 +13,14 @@ namespace WebApp.Models
         public string Email { get; set; }
         public string Phone { get; set; }
 
+        public string EventId { get; set; }
+
+
     }
 
     public class PartecipantViewModel
     {
-        public IList<Partecipant> Partecipants { get; set; }
+        public Partecipant Partecipant { get; set; }
         public IList<Event> Events { get; set; }
     }
 

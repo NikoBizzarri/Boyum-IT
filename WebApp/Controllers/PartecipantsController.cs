@@ -37,7 +37,12 @@ namespace WebApp.Controllers
         // GET: PartecipantsController/Create
         public ActionResult Create()
         {
-            return View();
+            var events = _repo.GetEvents();
+            var model = new PartecipantViewModel()
+            {
+                Events = events,
+            };
+            return View(model);
         }
 
         // POST: PartecipantsController/Create
@@ -49,9 +54,10 @@ namespace WebApp.Controllers
             {
                 var dto = new Partecipant()
                 {
-                    Fullname = collection["Firstname"],
-                    Email = collection["Email"],
-                    Phone = collection["Phone"]
+                    Fullname = collection["Partecipant.Fullname"],
+                    Email = collection["Partecipant.Email"],
+                    Phone = collection["Partecipant.Phone"],
+                    EventId = collection["Partecipant.EventId"]
                 };
 
                 _repo.AddPartecipant(dto);
