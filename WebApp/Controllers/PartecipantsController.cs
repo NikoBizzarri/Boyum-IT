@@ -4,15 +4,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.Models;
+using WebApp.Service.Interfaces;
 
 namespace WebApp.Controllers
 {
     public class PartecipantsController : Controller
     {
+        private readonly IRepository _repo; // todo: wrap the repo into a service class
+        public PartecipantsController(IRepository repo)
+        {
+            _repo = repo;
+        }
+
         // GET: PartecipantsController
         public ActionResult Index()
         {
-            return View();
+            var events = _repo.GetEvents();
+            var model = new PartecipantViewModel()
+            {
+                Events = events,
+            };
+            return View(model);
         }
 
         // GET: PartecipantsController/Details/5
@@ -34,6 +47,14 @@ namespace WebApp.Controllers
         {
             try
             {
+                var dto = new Partecipant()
+                {
+                    Fullname = collection["Firstname"],
+                    Email = collection["Email"],
+                    Phone = collection["Phone"]
+                };
+
+                _repo.AddPartecipant(dto);
                 return RedirectToAction(nameof(Index));
             }
             catch
