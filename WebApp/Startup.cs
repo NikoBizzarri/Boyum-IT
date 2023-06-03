@@ -51,6 +51,10 @@ namespace WebApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "partecipants",
+                    pattern: "{controller=Partecipants}/{action=Index}/{id?}");
             });
         }
     }
